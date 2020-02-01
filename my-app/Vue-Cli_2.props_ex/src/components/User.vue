@@ -7,6 +7,7 @@
     <v-layout row wrap>
       <v-flex xs12 sm6>
               <!-- v-bind = :변수명="어떤값" -->
+              <!-- props는 숫자나 object나 어떤형태든 넣어줄수있음 -->
         <UserDetail :nameOfChild="name"></UserDetail>
       </v-flex>
       <v-flex xs12 sm6>
