@@ -30,7 +30,7 @@
       <v-list-tile>
         <v-list-tile-content>수정일자:</v-list-tile-content>
         <v-list-tile-content class="align-end">
-          {{ editedDate }}
+          {{ getDateAndTime(editedDate) }}
         </v-list-tile-content>
       </v-list-tile>
     
@@ -41,6 +41,8 @@
 
 <script>
 import { eventBus } from "../main"
+import { dateFormat } from "../mixins/dateFormat"
+
 //부모컴포넌트에서에서 User.vue 에서
 //값을 주면 자식컴포넌트에서 값받을게 하고 말을해줘야하는데
 //그게바로 props라는 프로퍼티로 사용
@@ -63,12 +65,26 @@ export default {
     }
   },
   created() {
+    console.log("유저디테일 컴포넌트")
     //$on('보낸신호' , callback함수) : 이벤트버스에서 이벤트리스너의역할
     //뷰 인스턴스 내에서 콜백함수를 쓸때 arrow function표기법을 통해 작성해야
     //this가 뷰모델을 가르킴
     eventBus.$on('userWasEdited', (date) => {
       this.editedDate = date
     })
-  }
+  },
+  methods:{
+    // getDateAndTime(date){
+    //   if(date != null) {
+    //     let hour = date.getHours()
+    //     let minutes = date.getMinutes()
+    //     let fullDate = `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`
+    //     return `${fullDate} ${hour}:${minutes}`
+    //   } else {
+    //     return null
+    //   }
+    // }
+  },
+  mixins:[dateFormat]
 }
 </script>
