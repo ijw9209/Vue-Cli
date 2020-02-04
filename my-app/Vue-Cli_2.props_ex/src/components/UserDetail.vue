@@ -27,6 +27,12 @@
           {{ hasDogKr }}
         </v-list-tile-content>
       </v-list-tile>
+      <v-list-tile>
+        <v-list-tile-content>수정일자:</v-list-tile-content>
+        <v-list-tile-content class="align-end">
+          {{ editedDate }}
+        </v-list-tile-content>
+      </v-list-tile>
     
     
     </v-list>  
@@ -34,11 +40,17 @@
 </template>
 
 <script>
+import { eventBus } from "../main"
 //부모컴포넌트에서에서 User.vue 에서
 //값을 주면 자식컴포넌트에서 값받을게 하고 말을해줘야하는데
 //그게바로 props라는 프로퍼티로 사용
 //props프로퍼티는 array형태로 값을 선언함
 export default {
+  data(){
+    return {
+      editedDate: null
+    }
+  },
   //부모에서 만든 변수명을 props에 선언
   
   // nameOfChild 가 Object엿는지 String 형태가 기억나지않을때
@@ -49,6 +61,14 @@ export default {
     hasDogKr(){
       return this.hasDog == true ? '있음' : '없음'
     }
+  },
+  created() {
+    //$on('보낸신호' , callback함수) : 이벤트버스에서 이벤트리스너의역할
+    //뷰 인스턴스 내에서 콜백함수를 쓸때 arrow function표기법을 통해 작성해야
+    //this가 뷰모델을 가르킴
+    eventBus.$on('userWasEdited', (date) => {
+      this.editedDate = date
+    })
   }
 }
 </script>

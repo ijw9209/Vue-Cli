@@ -29,7 +29,8 @@
 </template>
 
 <script>
-  export default{
+import { eventBus } from "../main"
+export default{
     props:["name","address","phone","hasDog"],
     data(){
       return {
@@ -46,9 +47,10 @@
     //이렇게해놓고 부모컴포넌트에도 신호를 받는 장치를 선언해야됨
     methods:{
       changeUser(){
-        console.log(this.user)
-        this.$emit("child" , this.user)
+       this.$emit("child" , this.user)
        //이런식으로 ==  child(this.user)란 함수안에 값을 넣어줌
+       // eventBus.$emit("userWasEdited", new Date())
+       eventBus.userWasEdited(new Date())
       }
     }
   }
