@@ -7,7 +7,7 @@
                 <td>제목</td>
                 <td>내용</td>
             </tr>
-            <tr :key="index" v-for="(value,index) in data">
+            <tr :key="index" v-for="(value,index) in data" @click="detail(index)">
                 <td>{{ index }}</td>
                 <td>{{value.writer}}</td>
                 <td>{{value.title}}</td>
@@ -31,6 +31,15 @@ export default {
      write() {
          this.$router.push({
              path: 'create'
+         })
+     },
+     detail(index) {
+         //param 값을 넘겨줄때는 속성값에 push 대신 name으로해야됨
+         this.$router.push({
+             name: 'Detail',
+             params:{
+                 contentId : index
+             }
          })
      }
  }
