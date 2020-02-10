@@ -8,8 +8,9 @@
         <b-collapse id="nav_collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item href="#">공지사항</b-nav-item>
-            <b-nav-item href="#" disabled>자유게시판</b-nav-item>
-            <b-nav-item href="#" disabled>구인구직</b-nav-item>
+            <!--라우터를 이용하기위해서는 href=> to로 고쳐야함 -->
+            <b-nav-item to="/board/free">자유게시판</b-nav-item>
+            <b-nav-item href="#">구인구직</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>   
