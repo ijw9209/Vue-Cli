@@ -16,7 +16,7 @@ let items = data.Content.sort((a,b) => {return b.content_id - a.content_id})
 // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/map
 // Array.prototype.filter() : 특정조건에 해당하는 요소를 모아 새로운 배열로 반환
 // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
-
+// ...  전개연산자 기존객체를 모두 받을수있음
 items = items.map(contentItem => {return {...contentItem, user_name: data.User.filter(userItem => userItem.user_id === contentItem.user_id)[0].name}})
 export default {
     data() {
