@@ -58,7 +58,7 @@ export default {
         },
         updateData(){
             this.$router.push({
-                path:"/"
+                path:`/board/free/Create/${this.contentId}`
             })
         }
     }

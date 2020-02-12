@@ -1,6 +1,7 @@
 <template>
   <div>
     <b-table striped hover :items="items" :fields="fields" @row-clicked="rowClick"></b-table>
+    <b-button @click="writeContent">글쓰기</b-button>
   </div>
 </template>
 <!--  @row-clicked : 클릭하면 어떤행동을 할건지 정해줄수 있음-->
@@ -48,6 +49,11 @@ export default {
       rowClick(item, index , e) {
         this.$router.push({
           path: `/board/free/detail/${item.content_id}`
+        })
+      },
+      writeContent() {
+        this.$router.push({
+          path: '/board/free/Create'
         })
       }
     }
