@@ -27,16 +27,21 @@
         <b-button variant="success" @click="deleteData">삭제</b-button>
       </div>
       <div class="content-detail-comment">
-        덧글
+        <!-- props를 넘겨줄때  props는 부모컴포넌트가 자식에게 전달해줄때 사용  :contentId="contentId"-->
+        <CommentList :contentId="contentId" />
       </div>
     </b-card>
   </div>    
 </template>
 <script>
 import data from "@/data";
+import CommentList from './CommentList';
 
 export default {
     name: "ContentDetail",
+    components: {
+      CommentList
+    },
     data() {
         const contentId = Number(this.$route.params.contentId);
         const contentData = data.Content.filter(item => item.content_id === contentId)[0]
