@@ -1,6 +1,12 @@
 <template>
   <div>
-    <b-table striped hover :items="items" :per-page="perPage"  :current-page="currentPage"  :fields="fields" @row-clicked="rowClick"></b-table>
+    <b-table 
+    striped hover 
+    :items="items" 
+    :per-page="perPage"  
+    :current-page="currentPage"  
+    :fields="fields" 
+    @row-clicked="rowClick"></b-table>
     <b-pagination
       v-model="currentPage"
       :total-rows="rows"
@@ -12,7 +18,7 @@
 </template>
 <!--  @row-clicked : 클릭하면 어떤행동을 할건지 정해줄수 있음-->
 <script>
-import data from '@/data'
+import data from "@/data";
 
 //b-table은 자동정렬이 되지만 원래 게시판은 최신순으로 나오니 역순으로 바꿔야함
 //sort() 정렬 인자로 함수를 받음 sort((a,b) => {return a-b}) 오름차순으로 정렬하면 a-b 리턴
@@ -26,32 +32,47 @@ import data from '@/data'
 
 
 export default {
+  name : "Board",
   data() {
-  let items = data.Content.sort((a,b) => {return b.content_id - a.content_id})
-  items = items.map(contentItem => {return {...contentItem, user_name: data.User.filter(userItem => userItem.user_id === contentItem.user_id)[0].name}})
+     let items = data.Content.sort((a, b) => {
+      return b.content_id - a.content_id;
+    });
+    items = items.map(contentItem => {
       return {
-        currentPage : 1,
-        perPage : 10,
+        ...contentItem,
+        user_name: data.User.filter(
+          userItem => userItem.user_id === contentItem.user_id
+        )[0].name
+      };
+    });
+      return {
+        currentPage: 1,
+        perPage: 10,
         fields: [
           {
-            key: 'content_id',
-            label : '글번호'
+            key: "content_id",
+            label : "글번호"
           },
           {
-            key: 'title',
-            label : '제목'
+            key: "title",
+            label : "제목"
           },
           {
-            key: 'created_at',
-            label : '작성일'
+            key: "created_at",
+            label : "작성일"
           },
           {
-            key: 'user_name',
-            label : '글쓴이'
+            key: "user_name",
+            label : "글쓴이"
           },
         ],
         items: items
       }
+    },
+    computed: {
+        rows() {
+          return this.items.length;
+          }
     },
     methods:{
       rowClick(item, index , e) {
@@ -61,13 +82,8 @@ export default {
       },
       writeContent() {
         this.$router.push({
-          path: '/board/free/Create'
+          path: "/board/free/Create"
         })
-      }
-    },
-    computed: {
-      rows() {
-        return this.items.length
       }
     }
 }
