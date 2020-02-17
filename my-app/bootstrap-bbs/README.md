@@ -1,4 +1,4 @@
-##bootstrap-vue를 이용한 vue.js 
+##bootstrap-vue를 이용한 vue.js Board
 
 # bootstrap-bbs
 
